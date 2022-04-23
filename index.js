@@ -1,14 +1,3 @@
-const express = require('express');
-const app = express();
- 
-app.get('/', function (req, res) {
-  res.send('Hello')
-});
-
-let port = 5000;
-app.listen(port);
-
-
 const Discord = require('discord.js-selfbot-v13');
 const client = new Discord.Client();
 
