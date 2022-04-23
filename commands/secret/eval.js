@@ -3,6 +3,7 @@ const Discord = require('discord.js-selfbot-v13');
 module.exports = {
     name: 'eval',
     alias: 'e',
+    description: 'Execute a JavaScript code without leaving Discord',
 
     async execute(client, message, args) {
         let limit = 2000;
@@ -19,7 +20,7 @@ module.exports = {
         if (txt.includes(client.token) || txt.includes(process.env.TOKEN)) return
 
         if (txt.length > limit) {
-            message.reply({ content: 'El código expresado excede el limite de caracteres' })
+            message.reply({ content: 'The expressed code exceeds the character limit' })
         } else
             message.reply({content: `\`\`\`js\n${code}\n\n-------------------\n\n${txt}\n\`\`\``});
         } catch (err) {

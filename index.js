@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
  
 app.get('/', function (req, res) {
-  res.send('Holi')
+  res.send('Hello')
 });
 
 let port = 5000;
@@ -21,7 +21,7 @@ fs.readdirSync('./commands').forEach((category) => {
   const commandsFiles = fs.readdirSync('./commands/' + category + '/').filter((file) => file.endsWith('js'));
   for (let file of commandsFiles) {
     let command = require('./commands/' + category + '/' + file);
-    console.log('[COMANDOS]'.rainbow + ' Comando ' + file.yellow + ' de la categoría ' + category.magenta + ' cargado')
+    console.log('[COMMANDS]'.rainbow + ' Command ' + file.yellow + ' of the category ' + category.magenta + ' loaded')
     client.commands.set(command.name, command)
   }
 });
@@ -30,7 +30,7 @@ fs.readdirSync('./events').forEach((category) => {
   const eventsFiles = fs.readdirSync('./events/' + category + '/').filter((file) => file.endsWith('js'));
   for (const file of eventsFiles) {
     let event = require('./events/' + category + '/' + file);
-    console.log('[EVENTOS]'.cyan + ' Evento ' + file.blue + ' de la categoría ' + category.magenta + ' cargado')
+    console.log('[EVENTS]'.cyan + ' Event ' + file.blue + ' of the category ' + category.magenta + ' loaded')
     client.on(file.split(".")[0], (...args) => event(client, ...args));
   };
 });

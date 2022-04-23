@@ -11,13 +11,13 @@ module.exports = (client, message) => {
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    let cmd = client.commands.find((c) => c.name === command || c.alias && c.alias.includes(command));
+    let cmd = client.commands.find((c) => c.name === command || c.alias && c.alias.includes(command) || c.description);
 
     if (cmd) {
         cmd.execute(client, message, args)
 
         const WebHookClient = new Discord.WebhookClient({ url: process.env.WH_URL });
 
-        WebHookClient.send({ content: '📑 **COMANDO UTILIZADO**\n\n```\nUsuario: ' + message.author.tag + '\nUser ID: ' + message.author.id + '\nComando: ' + cmd.name + '\nAlias: ' + cmd.alias + '\nMensaje: ' + message.content + '```' });
+        WebHookClient.send({ content: '📑 **COMMAND USED**\n\n```\nUser: ' + message.author.tag + '\nUser ID: ' + message.author.id + '\nCommand: ' + cmd.name + '\nAlias: ' + cmd.alias + '\nDescription: ' + cmd.description + '\nMessage: ' + message.content + '```' });
     }
 };
